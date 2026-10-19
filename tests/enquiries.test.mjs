@@ -1,0 +1,6 @@
+import {test} from 'node:test';
+import assert from 'node:assert/strict';
+import {enquiryLink} from '../lib/enquiries.js';
+const values={name:'A & B',email:'visitor@example.com',business:'Example #1',website:'',message:'Please use blue.\nKeep the existing copy.'};
+test('draft goes only to the configured recipient with encoded subject and intact brief',()=>{const url=new URL(enquiryLink(values,{template:'Signal'}));assert.equal(url.pathname,'inventure.contact@gmail.com');assert.equal(url.searchParams.get('subject'),'Website enquiry — Signal');assert.match(url.searchParams.get('body'),/A & B/);assert.match(url.searchParams.get('body'),/Please use blue.\nKeep the existing copy./);assert.match(url.searchParams.get('body'),/enquiry, not an order or payment/);});
+test('user input cannot add mail header parameters or extra recipients',()=>{const url=new URL(enquiryLink({...values,name:'A\r\nBcc: other@example.com',message:'a&bcc=other@example.com'},{template:'Signal\r\nCc: other@example.com'}));assert.equal(url.pathname,'inventure.contact@gmail.com');assert.deepEqual([...url.searchParams.keys()],['subject','body']);assert.doesNotMatch(url.searchParams.get('subject'),/[\r\n]/);assert.match(url.searchParams.get('body'),/a&bcc=other@example.com/);});

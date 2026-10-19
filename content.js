@@ -3,7 +3,7 @@ export const agency = {
   "name": "Studio / Name",
   "status": "Working brand — final name to be chosen",
   "location": "Independent businesses across the UK",
-  "email": "",
+  "email": "inventure.contact@gmail.com",
   "telephone": "",
   "domain": "",
   "formMode": "demo",
@@ -125,7 +125,7 @@ export const agency = {
     ],
     [
       "Are the examples real client projects?",
-      "Signal and Framework are working template demonstrations, not client projects or endorsements. Their business names and content are illustrative. Template prices, licensing, checkout and enquiry delivery must be configured before sales begin."
+      "Signal and Framework are working template demonstrations, not client projects or endorsements. Their business names and content are illustrative. Template prices, licensing and checkout must be agreed before sales begin. Enquiries can be sent to inventure.contact@gmail.com using your email app."
     ]
   ]
 };

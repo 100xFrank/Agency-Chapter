@@ -1,5 +1,7 @@
 # Chapter — independent agency website design
 
+Chapter is now the selected storefront. Signal and Framework appear as interactive post-style previews, with linked titles below. The custom website route explains the proposed package, payment process and enquiry summary. Enquiries prepare an email draft to **inventure.contact@gmail.com**; visitors send from their own email app. This site does not send email automatically or accept payments. Final prices, package scope and payment terms require a written quote. See `STOREFRONT-HANDOFF.md` for current behaviour; older concept/demo-only descriptions below describe the original design.
+
 **Live preview:** https://100xfrank.github.io/Agency-Chapter/
 
 **Repository:** https://github.com/100xFrank/Agency-Chapter

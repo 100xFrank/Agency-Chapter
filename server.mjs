@@ -4,7 +4,7 @@ import {fileURLToPath} from 'node:url';
 import path from 'node:path';
 const root=path.dirname(fileURLToPath(import.meta.url));const port=Number(process.env.PORT||4194);
 const types={'.html':'text/html; charset=utf-8','.css':'text/css; charset=utf-8','.js':'text/javascript; charset=utf-8','.svg':'image/svg+xml','.webp':'image/webp','.png':'image/png','.jpg':'image/jpeg'};
-const publicFiles=new Set(['index.html','style.css','app.js','content.js','lib/forms.js','favicon.svg','site.config.js','storefront.js','storefront.css']);
+const publicFiles=new Set(['index.html','style.css','app.js','content.js','lib/forms.js','lib/enquiries.js','favicon.svg','site.config.js','storefront.js','storefront.css']);
 http.createServer(async(req,res)=>{
  const headers={'X-Robots-Tag':'noindex, nofollow, noarchive','Cache-Control':'no-store','X-Content-Type-Options':'nosniff','Referrer-Policy':'no-referrer','Content-Security-Policy':"default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; form-action 'none'; base-uri 'none'; frame-ancestors 'self'"};
  try{
