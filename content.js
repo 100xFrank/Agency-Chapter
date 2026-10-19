@@ -125,7 +125,7 @@ export const agency = {
     ],
     [
       "Are the examples real client projects?",
-      "Not yet. The three portfolio slots shown here are planned concept websites. We will build those after choosing this agency’s design. They are not clients, completed work or endorsements."
+      "Signal and Framework are working template demonstrations, not client projects or endorsements. Their business names and content are illustrative. Template prices, licensing, checkout and enquiry delivery must be configured before sales begin."
     ]
   ]
 };
@@ -137,3 +137,8 @@ export const styles = {
     "colour": "#7b292e"
   }
 };
+
+export const templates = [
+ {id:'signal',name:'Signal',category:'Bold & expressive',price:'Price on request',description:'A confident, high-contrast presence for ambitious studios and independent businesses. Big typography, vivid accents and a direct path to enquiry.'},
+ {id:'framework',name:'Framework',category:'Clean & structured',price:'Price on request',description:'A crisp, organised foundation for service businesses. Clear sections, considered spacing and a practical layout that puts your offer first.'}
+];
