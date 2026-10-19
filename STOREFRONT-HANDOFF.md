@@ -1,5 +1,9 @@
 # Chapter storefront
 
+## Stronger preview depth — 19 October 2026
+
+Owner requested a more noticeable professional 3D bulge and stronger shadow for previews 01/02. Their surfaces now lift 10px, enlarge 2.5% and tilt 2 degrees on hover, scrolling or keyboard focus. A restrained radial highlight and layered shadow give depth without borders or visible scrollbars. Reduced-motion users receive the shadow/highlight without movement. Only the two gallery previews are affected. Restore checkpoint: checkpoint/before-stronger-preview-depth-20261019.
+
 ## Preview pop-outs — 19 October 2026
 
 Only previews 01/02 changed: borderless preview surfaces, no social header frame, subtle hover/scroll lift and shadow, hidden embedded scrollbars with scrolling preserved. Click a thumbnail or its accessible expand button to open a scrollable dialog; close button, Escape and backdrop dismissal supported. Mobile expand buttons work independently of Interact/Done. Original linked titles, standalone websites, custom package and enquiries are unchanged.
