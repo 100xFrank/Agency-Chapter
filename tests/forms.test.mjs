@@ -1,0 +1,15 @@
+import {test} from 'node:test';
+import assert from 'node:assert/strict';
+import {validate,simulate,limits} from '../lib/forms.js';
+const good={name:'Demo Visitor',email:'demo@example.com',business:'Example Business',website:'https://example.com',service:'new',message:'Fictional test enquiry about a new website.'};
+test('required fields are reported together',()=>{const errors=validate({name:'',email:'',business:'',website:'',service:'',message:''});assert.deepEqual(Object.keys(errors).sort(),['business','email','message','name','service']);});
+test('malformed email rejected',()=>{for(const email of ['example','person@','person@example','a b@example.com'])assert.ok(validate({...good,email}).email);});
+test('HTTP/HTTPS website or an empty optional website accepted',()=>{for(const website of ['',good.website,'http://example.com'])assert.deepEqual(validate({...good,website}),{});});
+test('unsafe or malformed website URLs rejected',()=>{for(const website of ['javascript:alert(1)','example.com','https://user:password@example.com','https://localhost'])assert.ok(validate({...good,website}).website);});
+test('length limits enforced for every field',()=>{for(const [field,max] of Object.entries(limits))assert.ok(validate({...good,[field]:'x'.repeat(max+1)})[field]);});
+test('all intended service choices accepted',()=>{for(const service of ['new','refresh','discuss'])assert.deepEqual(validate({...good,service}),{});assert.ok(validate({...good,service:'invented'}).service);});
+test('demo waits before success and returns an honest outcome without changing data',async()=>{let waited=0;const original={...good};const result=await simulate(good,{wait:async ms=>{waited=ms;}});assert.equal(waited,850);assert.deepEqual(good,original);assert.equal(result.sent,false);assert.equal(result.stored,false);assert.match(result.message,/No enquiry was sent or stored/);});
+test('failure preserves data and permits a later retry',async()=>{const original={...good};await assert.rejects(simulate(good,{failure:true,wait:async()=>{}}),/Your details are still here/);assert.deepEqual(good,original);assert.equal((await simulate(good,{wait:async()=>{}})).sent,false);});
+test('unconfigured live mode cannot claim delivery',async()=>{await assert.rejects(simulate(good,{mode:'live'}),/not configured/);});
+test('invalid data cannot reach the pending simulation',async()=>{let waits=0;await assert.rejects(simulate({...good,email:'bad'},{wait:async()=>{waits++;}}),/correct/);assert.equal(waits,0);});
+test('simulation sends no data to the network',async()=>{const original=globalThis.fetch;let requests=0;globalThis.fetch=()=>{requests++;throw Error('Unexpected network');};try{await simulate(good,{wait:async()=>{}});await assert.rejects(simulate(good,{failure:true,wait:async()=>{}}));assert.equal(requests,0);}finally{globalThis.fetch=original;}});
