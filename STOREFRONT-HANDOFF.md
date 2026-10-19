@@ -1,5 +1,11 @@
 # Chapter storefront
 
+## Preview pop-outs — 19 October 2026
+
+Only previews 01/02 changed: borderless preview surfaces, no social header frame, subtle hover/scroll lift and shadow, hidden embedded scrollbars with scrolling preserved. Click a thumbnail or its accessible expand button to open a scrollable dialog; close button, Escape and backdrop dismissal supported. Mobile expand buttons work independently of Interact/Done. Original linked titles, standalone websites, custom package and enquiries are unchanged.
+
+Chrome checked both pop-outs, thumbnail click, scrolling, hidden scrollbar styling, close/Escape, zero frame borders and 390px mobile fit without overflow. 13 tests, syntax and build passed. Restore checkpoint: checkpoint/before-preview-popouts-20261019.
+
 ## Latest refinement — 19 October 2026
 
 Gallery cards now use rounded social-post styling, no embedded site header/footer and softer sans-serif titles beneath each preview. Titles link to each original website in a new tab. Normal wheel/trackpad scrolling is native, with edge and overshoot containment instead of replacing every wheel event with an immediate scroll.
